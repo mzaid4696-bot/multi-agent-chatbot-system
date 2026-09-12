@@ -1,7 +1,7 @@
 from langgraph.graph import StateGraph, START, END
 from typing import TypedDict, Annotated
 from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_huggingface import HuggingFaceEmbeddings
 from dotenv import load_dotenv
 from langgraph.checkpoint.sqlite import SqliteSaver
 from langgraph.graph.message import add_messages
@@ -35,8 +35,8 @@ llm = ChatGroq(
     api_key=GROQ_API_KEY,
 )
 
-embeddings = GoogleGenerativeAIEmbeddings(
-    model="gemini-embedding-2"
+embeddings = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
 )
 
 def ingest_rag_document(file_path):

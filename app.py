@@ -6,6 +6,18 @@ import sqlite3
 import time
 
 # ============================================================
+# SECRETS BRIDGE (for Streamlit Cloud deployment)
+# ============================================================
+# Streamlit Cloud stores API keys in st.secrets, not as real
+# environment variables. This bridges them into os.environ so
+# that os.getenv() calls in the backend files still work,
+# both locally (using .env) and on Streamlit Cloud (using Secrets).
+
+for key in ["GROQ_API_KEY", "TAVILY_API_KEY", "OPENWEATHER_API_KEY", "GOOGLE_API_KEY"]:
+    if key in st.secrets:
+        os.environ[key] = st.secrets[key]
+
+# ============================================================
 # BACKEND
 # ============================================================
 

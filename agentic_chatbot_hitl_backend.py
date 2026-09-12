@@ -330,8 +330,10 @@ def chat_node(state: ChatState):
             "- Use `get_current_weather` when the user asks about current weather for a location.\n\n"
 
             "Answer general questions directly when no tool is required. "
+            "A PDF may already be uploaded in the knowledge base — always try calling rag_tool "
+            "first for any question that could relate to a document, before assuming none exists. "
+            "Only ask the user to upload a PDF if rag_tool returns no relevant information. "
             "Do not invent information from the uploaded document. "
-            "If the user asks about a PDF but no document is available, ask them to upload a PDF. "
             "After receiving a tool result, provide a clear and helpful final answer."
         )
     )

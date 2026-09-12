@@ -47,6 +47,7 @@ def ingest_rag_document(file_path):
     chunks = splitter.split_documents(docs)
     vector_store = FAISS.from_documents(chunks, embeddings)
     vector_store.save_local(DB_PATH)
+    return True
     
 
 
